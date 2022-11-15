@@ -5,6 +5,8 @@ public class TikTak {
     public synchronized void tik(boolean work){
         if(!work){
             notify();
+            System.out.println(String.format("Wątek %s kończy pracę",
+                    Thread.currentThread().getName()));
             return;
         }
         System.out.println("wyświetlam tik");
@@ -12,6 +14,7 @@ public class TikTak {
         System.out.println("tik zwalnia wątki");
         try{
             System.out.println(" tik czeka");
+            Thread.sleep(1000);
             wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -21,6 +24,8 @@ public class TikTak {
     public synchronized void tak(boolean work){
         if(!work){
             notify();
+            System.out.println(String.format("Wątek %s kończy pracę",
+                    Thread.currentThread().getName()));
             return;
         }
         System.out.println("wyświetlam tak");
@@ -28,6 +33,7 @@ public class TikTak {
         System.out.println("tak zwalnia wątki");
         try{
             System.out.println(" tak czeka");
+            Thread.sleep(1000);
             wait();
         } catch (InterruptedException e) {
             e.printStackTrace();

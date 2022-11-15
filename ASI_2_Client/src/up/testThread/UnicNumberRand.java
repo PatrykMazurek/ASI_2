@@ -31,7 +31,7 @@ public class UnicNumberRand implements Callable<Integer> {
                 if (!Main.unicNumber.contains(number)){
                     find = true;
                 }
-                //                for(int i = 0; i<200; i++){
+//                for(int i = 0; i<200; i++){
 //                    if (Main.tabInt[i] == number) { find = true;}
 //                }
                 if(find){

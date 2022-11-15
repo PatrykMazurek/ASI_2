@@ -1,19 +1,18 @@
 package up;
 
+import up.DB.DBConnection;
+import up.DB.DBOperation;
 import up.testThread.StartTikTAK;
-import up.testThread.TestRunnable;
 import up.testThread.TikTak;
-import up.testThread.testCallable;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
     public static int[] tabInt;
+    public static int number;
     public static List<Integer> unicNumber;
 
     public static void main(String[] args) {
@@ -40,36 +39,33 @@ public class Main {
 ////        pz.packageArchive(files, "plik.zip");
 //        pz.unpackageArchive(Path.of("pliki_out"), "pliki.zip");
 
-        Thread th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                for( int i = 0; i < 40; i++){
-                    System.out.println("wartość " + i);
-                    try {
-                        Thread.sleep(400);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-//        th.start();
-//        try {
-//            th.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+
 //        TestRunnable tr = new TestRunnable();
 //        tr.startThread(10);
 //        testCallable tc = new testCallable();
 //        tc.startThread(5);
 //        System.out.println("Zakończenie wątka głównego");
 
-        TikTak tikTak = new TikTak();
+//        TikTak tikTak = new TikTak();
+//        StartTikTAK t1 = new StartTikTAK("Tik", tikTak);
+//        StartTikTAK t2 = new StartTikTAK("tak", tikTak);
+//        number = 0;
+//        try {
+//            t1.th.join();
+//            t2.th.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("Wątek główny kończy pracę");
 
-        StartTikTAK t1 = new StartTikTAK("tik", tikTak);
-        StartTikTAK t2 = new StartTikTAK("tak", tikTak);
+        DBConnection c = new DBConnection();
+        Connection connection = c.connectToSQLite();
+        c.createTable();
+        // coś rób z bazą danych
+        DBOperation operation = new DBOperation(connection);
+        operation.insertPerson("Patryk", "Mazurek", 33);
+        operation.getAllRecord();
+        c.disconnect();
 
 //        Thread tik = new Thread(new Runnable() {
 //            @Override
@@ -91,9 +87,6 @@ public class Main {
 //                tikTak.tak(false);
 //            }
 //        });
-//
 //        tak.start();
-
-
     }
 }

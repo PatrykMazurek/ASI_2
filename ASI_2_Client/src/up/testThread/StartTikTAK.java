@@ -2,7 +2,7 @@ package up.testThread;
 
 public class StartTikTAK implements Runnable {
 
-    Thread th;
+    public Thread th;
     TikTak ttObj;
 
     public StartTikTAK(String name, TikTak tObj){
