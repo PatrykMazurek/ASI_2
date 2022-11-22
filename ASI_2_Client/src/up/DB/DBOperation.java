@@ -29,6 +29,22 @@ public class DBOperation {
         }
     }
 
+    public void updatePerson(int id, String name, String lastName){
+        try {
+            PreparedStatement preper = connection.prepareStatement(
+                    "UPDATE person SET Name = ?, LastName = ? " +
+                            "WHERE Id = ?");
+            preper.setString(1, name);
+            preper.setString(2, lastName);
+            preper.setInt(3, id);
+            int result = preper.executeUpdate();
+            System.out.println( "Zaktualizowane rekordy " + result);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void getAllRecord(){
         try {
             PreparedStatement preped = connection.prepareStatement(

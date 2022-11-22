@@ -6,6 +6,7 @@ import up.testThread.StartTikTAK;
 import up.testThread.TikTak;
 
 import java.sql.Connection;
+import java.sql.Savepoint;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,12 +60,19 @@ public class Main {
 //        System.out.println("Wątek główny kończy pracę");
 
         DBConnection c = new DBConnection();
-        Connection connection = c.connectToSQLite();
-        c.createTable();
+//        Connection connection = c.connectToSQLite();
+        Connection connection = c.connectToMySql();
+//        c.createTable();
         // coś rób z bazą danych
         DBOperation operation = new DBOperation(connection);
-        operation.insertPerson("Patryk", "Mazurek", 33);
-        operation.getAllRecord();
+//        operation.insertPerson("Patryk", "Mazurek", 33);
+//        operation.getAllRecord();
+//        Savepoint save = c.getSavePoint();
+//        operation.updatePerson(2, "Marek", "Rak");
+//        operation.getAllRecord();
+//        c.getRollback(save);
+//        System.out.println("Przywrócenie poprzedniego punktu");
+//        operation.getAllRecord();
         c.disconnect();
 
 //        Thread tik = new Thread(new Runnable() {
