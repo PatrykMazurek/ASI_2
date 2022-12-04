@@ -2,6 +2,7 @@ package up;
 
 import up.DB.DBConnection;
 import up.DB.DBOperation;
+import up.server.UDPClient;
 import up.testThread.StartTikTAK;
 import up.testThread.TikTak;
 
@@ -59,12 +60,12 @@ public class Main {
 //        }
 //        System.out.println("Wątek główny kończy pracę");
 
-        DBConnection c = new DBConnection();
+//        DBConnection c = new DBConnection();
 //        Connection connection = c.connectToSQLite();
-        Connection connection = c.connectToMySql();
+//        Connection connection = c.connectToMySql();
 //        c.createTable();
         // coś rób z bazą danych
-        DBOperation operation = new DBOperation(connection);
+//        DBOperation operation = new DBOperation(connection);
 //        operation.insertPerson("Patryk", "Mazurek", 33);
 //        operation.getAllRecord();
 //        Savepoint save = c.getSavePoint();
@@ -73,7 +74,13 @@ public class Main {
 //        c.getRollback(save);
 //        System.out.println("Przywrócenie poprzedniego punktu");
 //        operation.getAllRecord();
-        c.disconnect();
+//        c.disconnect();
+
+//        UDPClient udpClient = new UDPClient();
+//        for (int i = 0; i<15;i++){
+//            udpClient.sendMessage(i+"");
+//        }
+//        udpClient.close();
 
 //        Thread tik = new Thread(new Runnable() {
 //            @Override
@@ -96,5 +103,15 @@ public class Main {
 //            }
 //        });
 //        tak.start();
+
+        BoardGame bg = new BoardGame();
+        List<BoardGame> boardGameList = bg.initListGame();
+
+//        Stream<BoardGame> stream = boardGameList.stream();
+//        Map<Integer, List<BoardGame>> tempList = boardGameList.stream()
+//                .filter(g -> g.name.contains("g"))
+//                .filter(g -> g.minPlayers > 1)
+//                .filter(g -> g.price < 50)
+//                .collect(Collectors.groupingBy(BoardGame::getYear));
     }
 }
