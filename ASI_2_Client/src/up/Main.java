@@ -9,7 +9,11 @@ import up.testThread.TikTak;
 import java.sql.Connection;
 import java.sql.Savepoint;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -107,11 +111,27 @@ public class Main {
         BoardGame bg = new BoardGame();
         List<BoardGame> boardGameList = bg.initListGame();
 
-//        Stream<BoardGame> stream = boardGameList.stream();
-//        Map<Integer, List<BoardGame>> tempList = boardGameList.stream()
-//                .filter(g -> g.name.contains("g"))
-//                .filter(g -> g.minPlayers > 1)
-//                .filter(g -> g.price < 50)
-//                .collect(Collectors.groupingBy(BoardGame::getYear));
+        Stream<BoardGame> stream = boardGameList.stream();
+        Map<Integer, List<BoardGame>> tempList =
+                boardGameList.stream()
+                .filter(g -> g.name.contains("g"))
+                .filter(g -> g.minPlayers > 1)
+                .filter(g -> g.price < 50)
+                .collect(Collectors.groupingBy(BoardGame::getYear));
+
+//        stream.filter(g -> g.name.contains("g")).forEach(System.out::println);
+
+        bg.changeElements(boardGameList, 2016);
+//        bg.findAllElements(boardGameList, 2000);
+
+
+//        if( boardGameList.stream().anyMatch(g -> g.year == 2008)){
+//            System.out.println("istnieje gra z tego roku");
+//        }else{
+//            System.out.println("nieistnieje gra z tego roku");
+//        }
+
+
+
     }
 }
